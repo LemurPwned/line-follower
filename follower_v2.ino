@@ -1,8 +1,4 @@
 #include <Arduino.h>
-#include <WiFi.h>
-#include <ESPmDNS.h>
-#include <WiFiUdp.h>
-#include <ArduinoOTA.h>
 
 #define IR_SENSOR_INPUT_LEFT 15
 #define IR_SENSOR_INPUT_RIGHT 14
@@ -31,9 +27,6 @@ state lastState = FORWARD;
 
 int counter = 0;
 
-const char *ssid = "";     // Replace with your Wi-Fi SSID
-const char *password = ""; // Replace with your Wi-Fi password
-
 float last_error = 0;
 float integral = 0;
 char buf[64];
@@ -45,21 +38,6 @@ void setup()
     pinMode(IR_SENSOR_INPUT_RIGHT, INPUT); // Sensor output
     pinMode(LEFT_MOTOR_PIN, OUTPUT);
     pinMode(RIGHT_MOTOR_PIN, OUTPUT);
-
-    // WiFi.begin(ssid, password);
-    // while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    //   Serial.println("Connection Failed! Rebooting...");
-    //   delay(5000);
-    //   ESP.restart();
-    // }
-    // // Initialize OTA
-    // ArduinoOTA.begin();
-    // ArduinoOTA.setHostname("esp32-ota-example");
-    // // ArduinoOTA.setPassword("YourOTAPassword"); // Replace with your OTA password
-
-    // Serial.println("Ready");
-    // Serial.print("IP address: ");
-    // Serial.println(WiFi.localIP());
 }
 
 void PID_pseudo(float leftSensor, float rightSensor)
@@ -140,8 +118,6 @@ void PID_pseudo_single(float leftSensor)
 }
 void loop()
 {
-    // ArduinoOTA.handle();
-
     float sensorOutLeft = analogRead(IR_SENSOR_INPUT_LEFT);
     float sensorOutRight = analogRead(IR_SENSOR_INPUT_RIGHT);
     // delay(500);
