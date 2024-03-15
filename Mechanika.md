@@ -72,7 +72,7 @@ Po upewnieniu się, że posiadasz wszystkie wymienione wyżej elementy, możesz 
 
 ## Twój robot jest prawie gotowy! Pora na podłączenia elektryczne. 
 
-#### Za pomocą kabli podłącz wszystkie elementy elektroniczne ze sobą zgodnie z poniższym schematem. 
+#### Za pomocą kabli połącz wszystkie elementy elektroniczne ze sobą zgodnie z poniższym schematem. 
 ![title](img/schemat.png)
 
 
