@@ -99,7 +99,7 @@ Dla wygody oznaczyliśmy możliwe stany robota i silników w `enum` `state. Są 
 - `RIGHT` -- robot skręca w prawo, lewy silnik dostaje `CRUISE_SPEED`, a prawy `LOW_SPEED`
 - `STOP` -- robot zatrzymuje się. Zatrzymanie robota jest realizowane poprzez ustawienie wartości PWM na obu silnikach na 255.
 
-| :zap   Uwaga                                                                                                                                                                                                                                                                                                                                        |
+| :zap: Uwaga                                                                                                                                                                                                                                                                                                                                        |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Silniki mają strefę "martwą". Co to oznacza? Mniej więcej tyle, że każdy silnik wymaga minimalnej wartości PWM, aby ruszyć. Pamiętaj, mamy 2 niezależne servo silniki w każdym robocie, więc każdy z nich może mieć inną strefę martwą! Przykładowo, lewy silnik może potrzebować minimalnej wartości na pinie, aby ruszyć równej 129, a drugi 120. |
 
