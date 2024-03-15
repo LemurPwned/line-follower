@@ -4,15 +4,11 @@
 #define IR_SENSOR_INPUT_RIGHT 14
 #define RIGHT_MOTOR_PIN 13
 #define LEFT_MOTOR_PIN 12
-#define FILL 1000
-#define Kp 1
-#define Kd 1
-#define Ki 1
 
 #define LOW_SPEED 255
-#define HIGH_SPEED 80    // 0 bad battery
-#define CRUISE_SPEED 120 // 30
-#define LINE_THRESHOLD 0.9
+#define HIGH_SPEED 85       // 0 bad battery
+#define CRUISE_SPEED 110    // 30
+#define LINE_THRESHOLD 4050 // for analog, 0.9 for digital
 
 enum state
 {
@@ -23,13 +19,9 @@ enum state
 };
 int bufLen = 150;
 int bufferCounter = 0;
-state lastState = FORWARD;
+state lastState = FORWARD; // just to initialize
 
-int counter = 0;
-
-float last_error = 0;
-float integral = 0;
-char buf[64];
+char buf[64]; // print buffer for debug
 
 void setup()
 {
@@ -40,7 +32,7 @@ void setup()
     pinMode(RIGHT_MOTOR_PIN, OUTPUT);
 }
 
-void PID_pseudo(float leftSensor, float rightSensor)
+void drive(float leftSensor, float rightSensor)
 {
     if ((leftSensor > LINE_THRESHOLD) && (rightSensor > LINE_THRESHOLD))
     {
@@ -73,7 +65,9 @@ void PID_pseudo(float leftSensor, float rightSensor)
     }
     else
     {
-        // stop
+        // this is the return to track control
+
+        // use this to stop immediately
         // analogWrite(LEFT_MOTOR_PIN, 255);
         // analogWrite(RIGHT_MOTOR_PIN, 255);
         if (bufferCounter >= bufLen)
@@ -97,10 +91,11 @@ void PID_pseudo(float leftSensor, float rightSensor)
             Serial.println("CORRECT LEFT");
             bufferCounter++;
         }
+        // an improvement would be to handle `else` case
     }
 }
 
-void PID_pseudo_single(float leftSensor)
+void drive_single(float leftSensor)
 {
     if (leftSensor > LINE_THRESHOLD)
     {
@@ -120,11 +115,14 @@ void loop()
 {
     float sensorOutLeft = analogRead(IR_SENSOR_INPUT_LEFT);
     float sensorOutRight = analogRead(IR_SENSOR_INPUT_RIGHT);
+
+    // use this to test the sensors
     // delay(500);
-    // delay(200);
     // sprintf(buf, "Left sensor: %3f, Right sensor: %3f\r\n", sensorOutLeft, sensorOutRight);
     // Serial.print(buf);
 
-    PID_pseudo(sensorOutLeft, sensorOutRight);
-    // PID_pseudo_single(sensorOutLeft);
+    drive(sensorOutLeft, sensorOutRight);
+
+    // try this to drive with only one sensor
+    // drive_single(sensorOutLeft);
 }
