@@ -9,6 +9,7 @@ Projekt ten jest przykładem prostego line followera, który może być wykorzys
 - [Podstawowy line follower do zajęć edukacyjnych](#podstawowy-line-follower-do-zajęć-edukacyjnych)
   - [Opis projektu](#opis-projektu)
   - [Tabela zawartości](#tabela-zawartości)
+  - [Składanie platformy](#składanie-platformy)
   - [Uruchamianie programu](#uruchamianie-programu)
     - [Krok 1: Sprawdzenie środowiska uruchomieniowego Arduino](#krok-1-sprawdzenie-środowiska-uruchomieniowego-arduino)
     - [Krok 2: Sprawdzenie podłączenia pinów](#krok-2-sprawdzenie-podłączenia-pinów)
@@ -25,6 +26,10 @@ Projekt ten jest przykładem prostego line followera, który może być wykorzys
         - [Kontrola jazdy za pomocą jednego czujnika](#kontrola-jazdy-za-pomocą-jednego-czujnika)
   - [Dodatkowe informacje o platformie](#dodatkowe-informacje-o-platformie)
 
+
+## Składanie platformy
+
+Szczegółowy opis składania platformy znajdziesz w pliku [Mechanika.md](Mechanika.md).
 
 ## Uruchamianie programu
 
@@ -99,7 +104,7 @@ Dla wygody oznaczyliśmy możliwe stany robota i silników w `enum` `state. Są 
 - `RIGHT` -- robot skręca w prawo, lewy silnik dostaje `CRUISE_SPEED`, a prawy `LOW_SPEED`
 - `STOP` -- robot zatrzymuje się. Zatrzymanie robota jest realizowane poprzez ustawienie wartości PWM na obu silnikach na 255.
 
-| :zap: Uwaga                                                                                                                                                                                                                                                                                                                                        |
+| :zap: Uwaga                                                                                                                                                                                                                                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Silniki mają strefę "martwą". Co to oznacza? Mniej więcej tyle, że każdy silnik wymaga minimalnej wartości PWM, aby ruszyć. Pamiętaj, mamy 2 niezależne servo silniki w każdym robocie, więc każdy z nich może mieć inną strefę martwą! Przykładowo, lewy silnik może potrzebować minimalnej wartości na pinie, aby ruszyć równej 129, a drugi 120. |
 
