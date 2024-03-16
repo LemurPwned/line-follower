@@ -1,4 +1,6 @@
 # Instrukcja zbudowania robota LineFollowers
+
+## Wprowadzenie 
 Niniejsza instrukcja zawiera krok po kroku przedstwiony schemat budowy robota typy LineFollowers. Przed przystąpieniem do pracy upewnij się, że dysponujesz: 
 - 1 x śrubokrętem płaskim 
 - nożyczkami 
